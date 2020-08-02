@@ -2,11 +2,16 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import AccordionElement from "./AccordionElement.jsx";
+import "../scss/components/accordion.scss";
 
 class Accordion extends Component {
   state = {
     activeAccordion: -1,
   };
+
+  setActiveElement = index => {
+    this.setState({activeAccordion: index})
+  }
 
   renderOrderList() {
     if (this.props.list.length) {
@@ -14,13 +19,14 @@ class Accordion extends Component {
         return (
           <AccordionElement
             key={`${el.name}-${index}`}
-            activeAccordion={this.props.activeAccordion}
+            activeAccordion={this.state.activeAccordion}
             data={el}
+            setActiveElement={this.setActiveElement}
           />
         );
       });
 
-      return <ul>{orderList}</ul>;
+      return <ul className="accordion">{orderList}</ul>;
     } else {
       return (
         <p className="text">
