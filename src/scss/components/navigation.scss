@@ -1,0 +1,15 @@
+@import "../variables.scss";
+
+.navigation {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    min-width: 400px;
+    background-color: $color-one;
+    z-index: 2;
+
+
+    & .cta {
+        margin: 40px;
+    }
+}
