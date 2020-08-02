@@ -1,5 +1,5 @@
-import React, { Component } from "react"
-import { Link } from "react-router-dom"
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class NoMatch extends Component {
   render() {
@@ -19,8 +19,8 @@ class NoMatch extends Component {
           </p>
         </div>
       </section>
-    )
+    );
   }
 }
 
-export default NoMatch
+export default NoMatch;
