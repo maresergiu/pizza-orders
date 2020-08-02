@@ -1,6 +1,9 @@
 import React from "react";
 import Form from "./common/Form.jsx";
 import joiValidation from "../helpers/validation";
+import { connect } from "react-redux";
+import { addOrder } from "../store/orders/actions";
+import { withRouter } from "react-router-dom";
 
 class PizzaOrderForm extends Form {
   state = {
@@ -9,8 +12,8 @@ class PizzaOrderForm extends Form {
       lastname: "",
       phone: "",
       email: "",
+      pizza: ""
     },
-    errors: {},
     pizzaArray: [
       {
         _id: "1",
@@ -33,15 +36,21 @@ class PizzaOrderForm extends Form {
         name: "Dracula",
       }
     ],
+    errors: {}
   };
 
   schema = { ...joiValidation.schema };
   errorMessage = { ...joiValidation.message };
 
   doSubmit = () => {
-    // functionality after the submit fucntionality
-    console.log("Submited");
+    this.props.addOrder({ ...this.state.data, id: this.props.orders.totalOrders.length });
+
+    this.goToPage("/home");
   };
+
+  goToPage = (path) => {
+    this.props.history.push(path);
+  }
 
   render() {
     return (
@@ -59,4 +68,8 @@ class PizzaOrderForm extends Form {
   }
 }
 
-export default PizzaOrderForm;
+const mapStateToProps = state => state;
+
+export default connect(mapStateToProps, {
+  addOrder,
+})(withRouter(PizzaOrderForm));

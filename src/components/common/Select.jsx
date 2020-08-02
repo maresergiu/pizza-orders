@@ -9,7 +9,7 @@ const Select = ({ name, label, options, error, ...rest }) => {
       <select name={name} id={name} {...rest} className="input-element">
         <option value="" />
         {options.map((option) => (
-          <option key={option._id} value={option._id}>
+          <option key={option._id} value={option.name}>
             {option.name}
           </option>
         ))}
