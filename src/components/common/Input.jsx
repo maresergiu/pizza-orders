@@ -1,13 +1,15 @@
-import React  from 'react';
+import React from "react";
 
-const Input = ({ name, label, errors, ...rest }) => {
-    return ( 
-        <div className="form-group">
-            <label htmlFor={name}>{label}</label>
-            <input {...rest} name={name} className="form-control" id={name} />
-            {errors && <div className="alert alert-danger">{errors}</div> }
-        </div>
-     );
-}
- 
+const Input = ({ name, label, error, ...rest }) => {
+  return (
+    <div className="input-element_holder">
+      <label htmlFor={name} className="text inline-bl">
+        {label}
+      </label>
+      <input {...rest} name={name} className="input-element" id={name} />
+      {error && <div className="input-element_error">{error}</div>}
+    </div>
+  );
+};
+
 export default Input;

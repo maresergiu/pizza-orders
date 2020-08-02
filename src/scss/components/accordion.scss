@@ -1,0 +1,26 @@
+@import "../variables.scss";
+
+.accordion {
+    &-element {
+        border: 1px solid $color-two;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 20px;
+
+        &_details {
+            padding: 20px;
+        }
+
+        &_order-name {
+            border-bottom: none;
+
+            &.active {
+                border-bottom: 1px solid $color-two;
+            }
+        }
+
+        & .text {
+            padding-bottom: 0;
+        }
+    }
+}
