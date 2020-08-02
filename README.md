@@ -1,6 +1,24 @@
 ## Browser support
 IE11, Edge, Chrome, Firefox and Safari.
 
+## About the app
+
+The application is built with React, Redux and React Router.
+
+Libraries I have used:
+
+node-sass - scss
+prop-types - for type check
+eslint-config-prettie - for linting
+eslint-plugin-prettier - for linting
+prettier - formater
+react-slidedown - for slide down and slide up
+joi - for data validation
+react-app-polyfill - for ie11 compatibility
+react-redux - state management
+react-router-dom - for router management
+react-toastify - to show alert messages
+
 ## Install the app
 Run `npm i` in the root folder.
 
