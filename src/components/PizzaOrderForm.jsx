@@ -1,55 +1,62 @@
 import React from "react";
-import Joi from "joi-browser";
-import Form from './common/Form.jsx'
+import Form from "./common/Form.jsx";
+import joiValidation from "../helpers/validation";
 
 class PizzaOrderForm extends Form {
-    state = {
-        data: {
-            username: '',
-            password: '',
-            name: ''
-        },
-        errors: {}
-    }
+  state = {
+    data: {
+      firstname: "",
+      lastname: "",
+      phone: "",
+      email: "",
+    },
+    errors: {},
+    pizzaArray: [
+      {
+        _id: "1",
+        name: "Peperoni",
+      },
+      {
+        _id: "2",
+        name: "Mamaia",
+      },
+      {
+        _id: "3",
+        name: "Formagio",
+      },
+      {
+        _id: "4",
+        name: "Transilvania",
+      },
+      {
+        _id: "5",
+        name: "Dracula",
+      }
+    ],
+  };
 
-    // schema = {
-    //     firstname: Joi.string().required().label('First name'),
-    //     lastname: Joi.string().required().label('Last name'),
-    //     email: Joi.string().email({ tlds: { allow: false } }).required().label('Email'),
-    //     phone: Joi.string().min(10).required().label('Phone')
-    // }
+  schema = { ...joiValidation.schema };
+  errorMessage = { ...joiValidation.message };
 
-    schema = {
-        firstname: Joi.string().required().label('First name'),
-        lastname: Joi.string().required().label('Last name'),
-        email: Joi.string().required().label('Email'),
-        phone: Joi.string().required().label('Phone')
-    }
+  doSubmit = () => {
+    // functionality after the submit fucntionality
+    console.log("Submited");
+  };
 
-    doSubmit = () => {
-        // functionality after the submit fucntionality
-        this.validate();
-
-        console.log(this)
-
-        console.log('Submited');
-    }
-
-    render() {
-        const { data, errors } = this.state;
-
-        return (
-            <div>
-                <h1>Log in</h1>
-                <form onSubmit={this.handleSubmit}>
-                    {this.renderInput('firstname', 'First Name')}
-                    {this.renderInput('lastname', 'Last Name')}
-                    {this.renderInput('email', 'Email')}
-                    {this.renderInput('phone', 'Phone')}
-                    {this.renderButton('Submit')}
-                </form>
-            </div>);
-    }
+  render() {
+    return (
+      <form className="form">
+        {this.renderInput("firstname", "First Name", "Jonh")}
+        {this.renderInput("lastname", "Last Name", "Doe")}
+        {this.renderInput("email", "Email", "jonh.doe@email.com")}
+        {this.renderInput("phone", "Phone", "0781 0788 628")}
+        {this.renderSelect("pizza", "Pizza", this.state.pizzaArray)}
+        <div className="align-horizontal-right">
+          {this.renderButton("Submit")}
+        </div>
+      </form>
+    );
+  }
 }
 
 export default PizzaOrderForm;

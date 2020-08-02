@@ -1,12 +1,17 @@
-import React from "react"
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
-import { ToastContainer } from 'react-toastify';
-import { Provider } from "react-redux"
-import store from "./store/index"
-import Home from "./views/Home.jsx"
-import Orders from "./views/Orders.jsx"
-import Order from "./views/Order.jsx"
-import NoMatch from "./views/NoMatch.jsx"
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import { Provider } from "react-redux";
+import store from "./store/index";
+import Home from "./views/Home.jsx";
+import Orders from "./views/Orders.jsx";
+import Order from "./views/Order.jsx";
+import NoMatch from "./views/NoMatch.jsx";
 
 function App() {
   return (
@@ -44,7 +49,7 @@ function App() {
         </div>
       </footer>
     </React.Fragment>
-  )
+  );
 }
 
-export default App
+export default App;

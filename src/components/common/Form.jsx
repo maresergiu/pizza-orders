@@ -4,83 +4,97 @@ import Input from "./Input.jsx";
 import Select from "./Select.jsx";
 
 class Form extends Component {
-    state = {
-        data: {},
-        errors: {}
-    }
+  state = {
+    data: {},
+    errors: {},
+  };
 
-    renderButton(label) {
-        return <button className="cta" onClick={this.validate()}>{label}</button>;
-    }
+  validate = () => {
+    const options = { abortEarly: false };
+    const { error } = Joi.validate(this.state.data, this.schema, options);
+    if (!error) return null;
 
-    renderSelect = (name, label, options) => {
-        const { data, errors } = this.state;
+    const errors = {};
 
-        return (
-            <Select name={name} value={data[name]} label={label} options={options} onChange={this.handleChange} error={errors[name]} />
-        );
-    }
+    // for (let item of error.details) errors[item.path[0]] = item.message;
+    for (let item of error.details)
+      errors[item.path[0]] = this.errorMessage[item.path[0]][item.type];
 
-    renderInput(name, label, type = 'text') {
-        const { data, errors } = this.state;
+    return errors;
+  };
 
-        return (
-            <Input name={name}
-                value={data[name]}
-                label={label}
-                type={type}
-                onChange={this.handleChange}
-                errors={errors[name]} />
-        );
-    }
+  validateProperty = ({ name, value }) => {
+    const obj = { [name]: value };
+    const schema = { [name]: this.schema[name] };
+    const { error } = Joi.validate(obj, schema);
 
-    handleChange = ({ currentTarget: input }) => {
-        const data = { ...this.state.data },
-            errors = { ...this.state.errors },
-            errorMessage = this.validateProperty(input);
+    // return error ? error.details[0].message : null;
+    return error
+      ? this.errorMessage[error.details[0].path][error.details[0].type]
+      : null;
+  };
 
-        if (errorMessage) {
-            errors[input.name] = errorMessage;
-        } else {
-            delete errors[input.name];
-        }
+  handleSubmit = () => {
+    const errors = this.validate();
 
-        data[input.name] = input.value;
+    this.setState({ errors: errors || {} });
 
-        this.setState({ data, errors });
-    }
+    if (errors) return;
 
-    handleSubmit = (e) => {
-        e.preventDefault();
+    this.doSubmit();
+  };
 
-        const errors = this.validate();
-        this.setState({ errors: errors || {} });
+  handleChange = ({ currentTarget: input }) => {
+    const errors = { ...this.state.errors };
+    const errorMessage = this.validateProperty(input);
 
-        if (errors) return;
+    if (errorMessage) errors[input.name] = errorMessage;
+    else delete errors[input.name];
 
-        this.doSubmit();
-    }
+    const data = { ...this.state.data };
+    data[input.name] = input.value;
 
-    validateProperty = ({ name, value }) => {
-        const obj = { [name]: value },
-            schema = { [name]: this.schema[name] },
-            { error } = Joi.validate(obj, schema);
+    this.setState({ data, errors });
+  };
 
-        return error ? error.details[0].message : null;
-    }
+  renderButton(label) {
+    return (
+      <button type="button" onClick={() => this.handleSubmit()} className="cta">
+        {label}
+      </button>
+    );
+  }
 
-    validate = () => {
-        const options = { abortEarly: false },
-            result = Joi.validate(this.state.data, this.schema, options);
+  renderSelect(name, label, options) {
+    const { data, errors } = this.state;
 
-        const errors = {}
+    return (
+      <Select
+        name={name}
+        value={data[name]}
+        label={label}
+        options={options}
+        onChange={this.handleChange}
+        error={errors[name]}
+      />
+    );
+  }
 
-        for (let item of result.error.details) {
-            errors[item.path[0]] = item.message;
-        }
+  renderInput(name, label, placeholder, type = "text") {
+    const { data, errors } = this.state;
 
-        return errors;
-    }
+    return (
+      <Input
+        type={type}
+        name={name}
+        value={data[name]}
+        label={label}
+        placeholder={placeholder}
+        onChange={this.handleChange}
+        error={errors[name]}
+      />
+    );
+  }
 }
 
 export default Form;
