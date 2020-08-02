@@ -18,8 +18,20 @@ class PizzaOrderForm extends Form {
       },
       {
         _id: "2",
-        name: "Capriciosa",
+        name: "Mamaia",
       },
+      {
+        _id: "3",
+        name: "Formagio",
+      },
+      {
+        _id: "4",
+        name: "Transilvania",
+      },
+      {
+        _id: "5",
+        name: "Dracula",
+      }
     ],
   };
 
