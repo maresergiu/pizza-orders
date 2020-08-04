@@ -4,6 +4,7 @@ import joiValidation from "../helpers/validation";
 import { connect } from "react-redux";
 import { addOrder } from "../store/orders/actions";
 import { withRouter } from "react-router-dom";
+import mockedData from "../helpers/mockedData";
 
 class PizzaOrderForm extends Form {
   state = {
@@ -12,49 +13,31 @@ class PizzaOrderForm extends Form {
       lastname: "",
       phone: "",
       email: "",
-      pizza: ""
+      pizza: "",
     },
-    pizzaArray: [
-      {
-        _id: "1",
-        name: "Peperoni",
-      },
-      {
-        _id: "2",
-        name: "Mamaia",
-      },
-      {
-        _id: "3",
-        name: "Formagio",
-      },
-      {
-        _id: "4",
-        name: "Transilvania",
-      },
-      {
-        _id: "5",
-        name: "Dracula",
-      }
-    ],
-    errors: {}
+    pizzaArray: mockedData.pizzaArray,
+    errors: {},
   };
 
   schema = { ...joiValidation.schema };
   errorMessage = { ...joiValidation.message };
 
   doSubmit = () => {
-    this.props.addOrder({ ...this.state.data, id: this.props.orders.totalOrders.length });
+    this.props.addOrder({
+      ...this.state.data,
+      id: this.props.orders.totalOrders.length,
+    });
 
     this.goToPage("/home");
   };
 
   goToPage = (path) => {
     this.props.history.push(path);
-  }
+  };
 
   render() {
     return (
-      <form className="form">
+      <form data-testid="pizza-order-form" className="form">
         {this.renderInput("firstname", "First Name", "Jonh")}
         {this.renderInput("lastname", "Last Name", "Doe")}
         {this.renderInput("email", "Email", "jonh.doe@email.com")}
@@ -68,7 +51,7 @@ class PizzaOrderForm extends Form {
   }
 }
 
-const mapStateToProps = state => state;
+const mapStateToProps = (state) => state;
 
 export default connect(mapStateToProps, {
   addOrder,

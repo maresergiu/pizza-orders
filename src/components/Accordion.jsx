@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import AccordionElement from "./AccordionElement.jsx";
 import "../scss/components/accordion.scss";
@@ -9,12 +8,12 @@ class Accordion extends Component {
     activeAccordion: -1,
   };
 
-  setActiveElement = index => {
-    this.setState({activeAccordion: index})
-  }
+  setActiveElement = (index) => {
+    this.setState({ activeAccordion: index });
+  };
 
   renderOrderList() {
-    if (this.props.list.length) {
+    if (Array.isArray(this.props.list) && this.props.list.length) {
       const orderList = this.props.list.map((el, index) => {
         return (
           <AccordionElement
@@ -26,16 +25,10 @@ class Accordion extends Component {
         );
       });
 
-      return <ul className="accordion">{orderList}</ul>;
-    } else {
       return (
-        <p className="text">
-          You haven't made any orders yet. Please go to this{" "}
-          <Link data-testid="redirect-link" to="/order">
-            page
-          </Link>{" "}
-          to place your first order.
-        </p>
+        <ul data-testid="accordion" className="accordion">
+          {orderList}
+        </ul>
       );
     }
   }

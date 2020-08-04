@@ -1,30 +1,84 @@
 import React from "react";
+import { Router } from "react-router-dom";
+import { createBrowserHistory } from "history";
 import { render } from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
 import App from "../../App";
 
-// due to the fact the I have written tests only for Vue.js apps until now
-// this application gived me the ooportunity to write tests also for React.js
+test("should load the home page if page `/` is loaded", () => {
+  const history = createBrowserHistory();
 
-// this application brought a certain level of complexity as I had to learn the library very fast
-// and write unit tests with it
+  const { container } = render(
+    <Router history={history}>
+      <App />
+    </Router>
+  );
 
-// I have only written unit tests for the time being due to the short time that we had to spend writting the app
-// in a real production env I should write also integration tests and end-to-end tests
+  const currentPage = container.querySelector("[data-testid=home-page]")
+    .className;
 
-// I hope you like my tests :)
-
-test("should contain the home-page", () => {
-  const { queryByTestId } = render(<App />);
-
-  const homePage = queryByTestId("home-page");
-
-  expect(homePage).toBeInTheDocument();
+  expect(currentPage.indexOf("home-page") > -1).toBe(true);
 });
 
-test("should not contain the error page on load", () => {
-  const { queryByTestId } = render(<App />);
+test("should load the home page if page `/home` is loaded", () => {
+  const history = createBrowserHistory();
 
-  const errorPage = queryByTestId("error-page");
+  const { container } = render(
+    <Router history={history}>
+      <App />
+    </Router>
+  );
 
-  expect(errorPage).not.toBeInTheDocument();
+  const currentPage = container.querySelector("[data-testid=home-page]")
+    .className;
+
+  expect(currentPage.indexOf("home-page") > -1).toBe(true);
+});
+
+test("should load the order page if page `/order` is loaded", () => {
+  const history = createBrowserHistory();
+  history.push("/order");
+
+  const { container } = render(
+    <Router history={history}>
+      <App />
+    </Router>
+  );
+
+  const currentPage = container.querySelector("[data-testid=order-page]")
+    .className;
+
+  expect(currentPage.indexOf("order-page") > -1).toBe(true);
+});
+
+test("should load the orders page if page `/orders` is loaded", () => {
+  const history = createBrowserHistory();
+  history.push("/orders");
+
+  const { container } = render(
+    <Router history={history}>
+      <App />
+    </Router>
+  );
+
+  const currentPage = container.querySelector("[data-testid=orders-page]")
+    .className;
+
+  expect(currentPage.indexOf("orders-page") > -1).toBe(true);
+});
+
+test("should load the error page if page is not available", () => {
+  const history = createBrowserHistory();
+  history.push("/test");
+
+  const { container } = render(
+    <Router history={history}>
+      <App />
+    </Router>
+  );
+
+  const currentPage = container.querySelector("[data-testid=error-page]")
+    .className;
+
+  expect(currentPage.indexOf("error-page") > -1).toBe(true);
 });
