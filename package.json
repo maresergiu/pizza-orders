@@ -9,7 +9,6 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "core-js": "^3.6.5",
-
     "eslint-plugin-import": "^2.22.0",
     "joi": "^17.1.1",
     "joi-browser": "^13.4.0",
@@ -35,21 +34,18 @@
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all",
-      "ie 11"
+      "not op_mini all"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version",
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 3 safari version",
       "ie 11"
     ]
   },
   "devDependencies": {
     "@testing-library/dom": "^7.21.7",
-    "
-    
-    ": "^7.2.1",
+    "@testing-library/user-event": "^7.2.1",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
     "history": "^5.0.0",
