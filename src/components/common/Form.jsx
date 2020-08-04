@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Joi from "joi-browser";
 import Input from "./Input.jsx";
 import Select from "./Select.jsx";
+import { toast } from "react-toastify";
 
 class Form extends Component {
   state = {
@@ -9,11 +10,27 @@ class Form extends Component {
     errors: {},
   };
 
+  notify = () => {
+    toast.error("The form did not pass validaiton!", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
+
   validate = () => {
     const options = { abortEarly: false };
     const { error } = Joi.validate(this.state.data, this.schema, options);
 
-    if (!error) return null;
+    if (error) {
+      this.notify();
+    } else {
+      return null;
+    }
 
     const errors = {};
 
@@ -28,6 +45,8 @@ class Form extends Component {
     const obj = { [name]: value };
     const schema = { [name]: this.schema[name] };
     const { error } = Joi.validate(obj, schema);
+
+    if (error) this.notify();
 
     // return error ? error.details[0].message : null;
     return error
