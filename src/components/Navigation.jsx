@@ -5,7 +5,7 @@ import "../scss/components/navigation.scss";
 
 const Navigation = () => {
   return (
-    <nav className="navigation">
+    <nav data-testid="navigation" className="navigation">
       <Link data-testid="redirect-link" to="/orders" className="cta">
         Orders
       </Link>

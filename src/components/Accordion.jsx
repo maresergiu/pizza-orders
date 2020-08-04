@@ -9,12 +9,12 @@ class Accordion extends Component {
     activeAccordion: -1,
   };
 
-  setActiveElement = index => {
-    this.setState({activeAccordion: index})
-  }
+  setActiveElement = (index) => {
+    this.setState({ activeAccordion: index });
+  };
 
   renderOrderList() {
-    if (this.props.list.length) {
+    if (Array.isArray(this.props.list) && this.props.list.length) {
       const orderList = this.props.list.map((el, index) => {
         return (
           <AccordionElement
@@ -26,7 +26,11 @@ class Accordion extends Component {
         );
       });
 
-      return <ul className="accordion">{orderList}</ul>;
+      return (
+        <ul data-testid="accordion" className="accordion">
+          {orderList}
+        </ul>
+      );
     } else {
       return (
         <p className="text">
