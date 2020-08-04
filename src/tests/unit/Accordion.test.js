@@ -28,7 +28,7 @@ test("should display the Accordion component", () => {
     expect(accordionComponent).toBeInTheDocument();
 });
 
-test("should display 3 AccordionElements", () => {
+test("should display 1 AccordionElements", () => {
     const storeData = store.getState();
 
     const history = createBrowserHistory();

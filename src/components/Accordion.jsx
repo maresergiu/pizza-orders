@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import AccordionElement from "./AccordionElement.jsx";
 import "../scss/components/accordion.scss";
@@ -30,16 +29,6 @@ class Accordion extends Component {
         <ul data-testid="accordion" className="accordion">
           {orderList}
         </ul>
-      );
-    } else {
-      return (
-        <p className="text">
-          You haven't made any orders yet. Please go to this{" "}
-          <Link data-testid="redirect-link" to="/order">
-            page
-          </Link>{" "}
-          to place your first order.
-        </p>
       );
     }
   }

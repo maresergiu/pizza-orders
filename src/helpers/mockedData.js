@@ -4,6 +4,7 @@ const accordionElement = {
   phone: "07810788629",
   email: "mare.sergiu@gmail.com",
   pizza: "Peperoni",
+  id: 0
 };
 
 export default {

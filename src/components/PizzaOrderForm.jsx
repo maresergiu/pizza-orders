@@ -48,11 +48,6 @@ class PizzaOrderForm extends Form {
       id: this.props.orders.totalOrders.length,
     });
 
-    console.log({
-      ...this.state.data,
-      id: this.props.orders.totalOrders.length,
-    });
-
     this.goToPage("/home");
   };
 

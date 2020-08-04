@@ -40,6 +40,22 @@ test("should display the GlobalComponents in the Orders component", () => {
   expect(globalcomponents).toBeInTheDocument();
 });
 
+test("should display the fallback message if no order has been placed", () => {
+  const history = createBrowserHistory();
+
+  const { getByTestId } = render(
+    <Provider store={store}>
+      <Router history={history}>
+        <Orders />
+      </Router>
+    </Provider>
+  );
+
+  const noOrderFallback = getByTestId("no-order-fallback");
+
+  expect(noOrderFallback).toBeInTheDocument();
+});
+
 test("should display the Accordion in the Orders component", () => {
   store.dispatch(addOrder(mockedData.accordionElement));
 
