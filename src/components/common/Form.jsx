@@ -79,7 +79,12 @@ class Form extends Component {
 
   renderButton(label) {
     return (
-      <button type="button" onClick={() => this.handleSubmit()} className="cta">
+      <button
+        data-testid="form-submit-cta"
+        type="button"
+        onClick={() => this.handleSubmit()}
+        className="cta"
+      >
         {label}
       </button>
     );
