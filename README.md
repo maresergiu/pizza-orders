@@ -7,17 +7,17 @@ The application is built with React, Redux and React Router.
 
 Libraries I have used:
 
-node-sass - scss
-prop-types - for type check
-eslint-config-prettie - for linting
-eslint-plugin-prettier - for linting
-prettier - formater
-react-slidedown - for slide down and slide up
-joi - for data validation
-react-app-polyfill - for ie11 compatibility
-react-redux - state management
-react-router-dom - for router management
-react-toastify - to show alert messages
+node-sass - scss <br />
+prop-types - for type check<br />
+eslint-config-prettie - for linting<br />
+eslint-plugin-prettier - for linting<br />
+prettier - formater<br />
+react-slidedown - for slide down and slide up<br />
+joi - for data validation<br />
+react-app-polyfill - for ie11 compatibility<br />
+react-redux - state management<br />
+react-router-dom - for router management<br />
+react-toastify - to show alert messages<br />
 
 ## Install the app
 Run `npm i` in the root folder.
