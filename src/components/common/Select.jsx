@@ -6,7 +6,13 @@ const Select = ({ name, label, options, error, ...rest }) => {
       <label htmlFor={name} className="text inline-bl">
         {label}
       </label>
-      <select name={name} id={name} {...rest} className="input-element">
+      <select
+        data-testid={`select-${name}`}
+        name={name}
+        id={name}
+        {...rest}
+        className="input-element"
+      >
         <option value="" />
         {options.map((option) => (
           <option key={option._id} value={option.name}>
@@ -14,7 +20,11 @@ const Select = ({ name, label, options, error, ...rest }) => {
           </option>
         ))}
       </select>
-      {error && <div className="input-element_error">{error}</div>}
+      {error && (
+        <div data-testid="input-element_error" className="input-element_error">
+          {error}
+        </div>
+      )}
     </div>
   );
 };

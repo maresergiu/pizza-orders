@@ -4,6 +4,7 @@ import joiValidation from "../helpers/validation";
 import { connect } from "react-redux";
 import { addOrder } from "../store/orders/actions";
 import { withRouter } from "react-router-dom";
+import mockedData from "../helpers/mockedData";
 
 class PizzaOrderForm extends Form {
   state = {
@@ -14,28 +15,7 @@ class PizzaOrderForm extends Form {
       email: "",
       pizza: "",
     },
-    pizzaArray: [
-      {
-        _id: "1",
-        name: "Peperoni",
-      },
-      {
-        _id: "2",
-        name: "Mamaia",
-      },
-      {
-        _id: "3",
-        name: "Formagio",
-      },
-      {
-        _id: "4",
-        name: "Transilvania",
-      },
-      {
-        _id: "5",
-        name: "Dracula",
-      },
-    ],
+    pizzaArray: mockedData.pizzaArray,
     errors: {},
   };
 

@@ -28,13 +28,19 @@ const AccordionElement = ({ data, activeAccordion, setActiveElement }) => {
       <SlideDown closed={toggleAccordion()}>
         <ul className="accordion-element_details">
           <li>
-            <p className="accordion-element_details-email text">Email: {`${email}`}</p>
+            <p className="accordion-element_details-email text">
+              Email: {`${email}`}
+            </p>
           </li>
           <li>
-            <p className="accordion-element_details-phone text">Phone: {`${phone}`}</p>
+            <p className="accordion-element_details-phone text">
+              Phone: {`${phone}`}
+            </p>
           </li>
           <li>
-            <p className="accordion-element_details-pizza text">Pizza order: {`${pizza}`}</p>
+            <p className="accordion-element_details-pizza text">
+              Pizza order: {`${pizza}`}
+            </p>
           </li>
         </ul>
       </SlideDown>

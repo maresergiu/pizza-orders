@@ -12,6 +12,7 @@ class Form extends Component {
   validate = () => {
     const options = { abortEarly: false };
     const { error } = Joi.validate(this.state.data, this.schema, options);
+
     if (!error) return null;
 
     const errors = {};
@@ -59,7 +60,12 @@ class Form extends Component {
 
   renderButton(label) {
     return (
-      <button type="button" onClick={() => this.handleSubmit()} className="cta">
+      <button
+        data-testid="form-submit-cta"
+        type="button"
+        onClick={() => this.handleSubmit()}
+        className="cta"
+      >
         {label}
       </button>
     );

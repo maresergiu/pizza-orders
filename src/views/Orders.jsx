@@ -12,14 +12,19 @@ class Orders extends Component {
       <section data-testid="orders-page" className="orders-page">
         <div className="holder">
           <h2 className="sub-title">Orders page!</h2>
-          {Array.isArray(this.props.totalOrders) && this.props.totalOrders.length ? <Accordion list={this.props.totalOrders} /> : this.renderFallback()}
+          {Array.isArray(this.props.totalOrders) &&
+          this.props.totalOrders.length ? (
+            <Accordion list={this.props.totalOrders} />
+          ) : (
+            this.renderFallback()
+          )}
         </div>
         <GlobalComponents />
       </section>
     );
   }
 
-  renderFallback (){
+  renderFallback() {
     return (
       <p data-testid="no-order-fallback" className="text">
         You haven't made any orders yet. Please go to this{" "}
