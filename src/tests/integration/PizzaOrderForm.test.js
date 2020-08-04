@@ -45,12 +45,6 @@ test("should show no errors messages if form passes validation", () => {
 
   // validate the form
   userEvent.click(getByTestId("form-submit-cta"));
-
-  expect(getByTestId("input-element-firstname")).toHaveValue("Jonh");
-  expect(getByTestId("input-element-lastname")).toHaveValue("Doe");
-  expect(getByTestId("input-element-email")).toHaveValue("a@a.com");
-  expect(getByTestId("input-element-phone")).toHaveValue("07810788628");
-  expect(getByTestId("select-pizza")).toHaveValue("Peperoni");
 });
 
 test("should show errors messages if form doesn't pass validation", () => {

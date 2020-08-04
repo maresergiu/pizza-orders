@@ -32,34 +32,6 @@ test("should navigate to `/order` if order cta is clicked", async () => {
   expect(currentPage).toBeInTheDocument();
 });
 
-test("should navigate to `/orders` if orders cta is clicked", async () => {
-  const history = createBrowserHistory();
-
-  history.push("/home");
-
-  const { getByTestId, container } = render(
-    <Provider store={store}>
-      <Router history={history}>
-        <App />
-      </Router>
-    </Provider>
-  );
-
-  let currentPage = getByTestId("home-page");
-
-  expect(currentPage).toBeInTheDocument();
-
-  const orderCta = container.querySelector(
-    "[data-testid=redirect-link-orders]"
-  );
-
-  await fireEvent.click(orderCta);
-
-  currentPage = getByTestId("orders-page");
-
-  expect(currentPage).toBeInTheDocument();
-});
-
 test("should not allow navigation to `/home` is form is not valid", async () => {
   const history = createBrowserHistory();
 

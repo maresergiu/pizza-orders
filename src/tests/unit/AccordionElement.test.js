@@ -35,8 +35,8 @@ test("should display the name property in the AccordionElement component", () =>
   );
 
   const accordionElement = container.querySelector(
-      ".accordion-element_order-name"
-    ),
+    ".accordion-element_order-name"
+  ),
     userName = accordionElement.textContent;
 
   expect(accordionElement).toBeInTheDocument();
@@ -102,7 +102,7 @@ test("should render the pizza property in the AccordionElement component", () =>
   expect(accordionElementPizza).toBeInTheDocument();
 });
 
-test("should show the details if accordion-element_order-name doesn't have the active class", async () => {
+test("should show the details if accordion-element_order-name has the active class", async () => {
   const { container } = render(
     <Provider store={store}>
       <AccordionElement
@@ -114,7 +114,7 @@ test("should show the details if accordion-element_order-name doesn't have the a
   );
 
   let orderName = container.querySelector(".accordion-element_order-name")
-      .className,
+    .className,
     slideDownDetails = container.querySelector(".react-slidedown");
 
   expect(orderName.indexOf("active") > -1).toBe(true);
@@ -122,7 +122,7 @@ test("should show the details if accordion-element_order-name doesn't have the a
   expect(slideDownDetails).toBeVisible();
 });
 
-test("should hide the details if accordion-element_order-name has the active class", async () => {
+test("should hide the details if accordion-element_order-name doesn't have the active class", async () => {
   const { container } = render(
     <Provider store={store}>
       <AccordionElement
@@ -134,7 +134,7 @@ test("should hide the details if accordion-element_order-name has the active cla
   );
 
   let orderName = container.querySelector(".accordion-element_order-name")
-      .className,
+    .className,
     slideDownDetails = container.querySelector(".react-slidedown");
 
   expect(orderName.indexOf("active") === -1).toBe(true);
