@@ -7,6 +7,7 @@
     min-width: 400px;
     background-color: $color-one;
     z-index: 2;
+    padding: 20px;
 
     @media only screen and (max-width: $breakpointTablet) {
         min-width: auto;
@@ -14,6 +15,6 @@
     }
 
     & .cta {
-        margin: 40px;
+        margin: 20px;
     }
 }
