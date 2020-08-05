@@ -4,6 +4,7 @@ IE11, Edge, Chrome, Firefox and Safari.
 
 ## About the app
 
+The appliation allows you to place pizza orders.
 The application is built with React, Redux and React Router.
 
 Libraries I have used:
