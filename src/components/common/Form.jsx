@@ -46,8 +46,6 @@ class Form extends Component {
     const schema = { [name]: this.schema[name] };
     const { error } = Joi.validate(obj, schema);
 
-    if (error) this.notify();
-
     // return error ? error.details[0].message : null;
     return error
       ? this.errorMessage[error.details[0].path][error.details[0].type]
