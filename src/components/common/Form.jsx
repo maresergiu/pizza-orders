@@ -20,7 +20,7 @@ class Form extends Component {
       draggable: true,
       progress: undefined,
     });
-  }
+  };
 
   validate = () => {
     const options = { abortEarly: false };
